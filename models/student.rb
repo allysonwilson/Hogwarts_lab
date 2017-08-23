@@ -30,6 +30,16 @@ class Student
     @id = student_data.first()['id'].to_i
   end
 
+  def delete()
+    sql = 'DELETE FROM hogwarts WHERE id =$1;'
+    SqlRunner.run(sql, [@id])
+  end
+
+  def self.delete_all()
+    sql = 'DELETE FROM hogwarts;'
+    SqlRunner.run(sql, [])
+  end
+
   def self.all()
       sql = "SELECT * FROM hogwarts"
       values = []

@@ -1,7 +1,7 @@
 require('pry-byebug')
-require_relative('../models/student')
+require_relative('../models/student.rb')
 
-
+Student.delete_all()
 
 student1 = Student.new({
   "first_name" => "Harry",
@@ -28,4 +28,4 @@ student1.save()
     student3.save()
 
 binding.pry
-nils
+nil
