@@ -13,7 +13,7 @@ class Student
   end
 
   def save()
-    sql = "INSERT INTO hogwarts
+    sql = "INSERT INTO students
     (
       first_name,
       last_name,
@@ -31,17 +31,17 @@ class Student
   end
 
   def delete()
-    sql = 'DELETE FROM hogwarts WHERE id =$1;'
+    sql = 'DELETE FROM students WHERE id =$1;'
     SqlRunner.run(sql, [@id])
   end
 
   def self.delete_all()
-    sql = 'DELETE FROM hogwarts;'
+    sql = 'DELETE FROM students;'
     SqlRunner.run(sql, [])
   end
 
   def self.all()
-      sql = "SELECT * FROM hogwarts"
+      sql = "SELECT * FROM students"
       values = []
       students = SqlRunner.run( sql, values )
       result = students.map { |student| Student.new( student) }
@@ -49,7 +49,7 @@ class Student
     end
 
     def self.find( id )
-      sql = "SELECT * FROM hogwarts WHERE id = $1"
+      sql = "SELECT * FROM students WHERE id = $1"
       values = [id]
       student = SqlRunner.run( sql, values )
       result = Student.new( student.first )
