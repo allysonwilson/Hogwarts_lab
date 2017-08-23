@@ -65,5 +65,30 @@ class Student
       return result
     end
 
+  def update()
+    sql = "UPDATE students
+    SET
+    (
+      first_name,
+      last_name,
+      house_id,
+      age
+
+    ) =
+    (
+      $1, $2, $3, $4
+    )
+  WHERE id = $5"
+  values = [@first_name, @last_name, @house_id,
+    @age]
+  SqlRunner.run( sql, values )
+end
+
+def delete()
+  sql = "DELETE FROM students
+  WHERE id = $1"
+  values = [@id]
+  SqlRunner.run( sql, values )
+end
 
 end

@@ -49,4 +49,25 @@ def self.all()
     SqlRunner.run(sql, [])
   end
 
+def update()
+    sql = "UPDATE houses
+    SET
+    ( name
+    )=
+    (
+      $1
+    )
+    WHERE id = $2"
+    values = [@fname]
+    SqlRunner.run( sql, values )
+  end
+
+  def delete()
+    sql = "DELETE FROM houses
+    WHERE id = $1"
+    values = [@id]
+    SqlRunner.run( sql, values )
+  end
+
+
 end
