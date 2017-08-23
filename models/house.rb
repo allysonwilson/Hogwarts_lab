@@ -11,7 +11,6 @@ def save()
   sql = "INSERT INTO houses
   (
     name
-
   )
   VALUES
   (

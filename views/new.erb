@@ -8,10 +8,9 @@
 
   <label for="house-select">Select a House:</label>
     <select id="house-select" name="house">
-      <option value="Gryffindor">Gryffindor</option>
-      <option value="Slytherin">Slytherin</option >
-      <option value="Hufflepuff">Hufflepuff</option >
-      <option value="Ravenclaw">Ravenclaw</option >
+      <% for house in @houses do %>
+      <option value="<%= house.name %>"></option>
+      <% end %>
     </select >
 
   <label for="age-field">Age:</label>

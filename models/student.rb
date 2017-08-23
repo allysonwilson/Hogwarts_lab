@@ -2,14 +2,23 @@ require_relative('../db/sql_runner')
 
 class Student
 
-    attr_accessor :id, :first_name, :last_name, :house, :age
+    attr_accessor :id, :first_name, :last_name, :house_id, :age
 
   def initialize(student_array)
     @id = student_array['id'].to_i
     @first_name = student_array['first_name']
     @last_name = student_array['last_name']
-    @house = student_array['house']
+    @house_id = student_array['house_id']
     @age = student_array['age'].to_i
+  end
+
+  def house()
+    sql = 'SELECT * FROM houses
+    WHERE id = $1;'
+    result_array = SqlRunner.run( sql, [@house_id])
+    house_hash = result_array[0]
+    house_object = House.new(house_hash)
+    return house_object
   end
 
   def save()
@@ -17,7 +26,7 @@ class Student
     (
       first_name,
       last_name,
-      house,
+      house_id,
       age
     )
     VALUES
@@ -25,7 +34,7 @@ class Student
       $1, $2, $3, $4
     )
     RETURNING *"
-    values = [@first_name, @last_name, @house, @age]
+    values = [@first_name, @last_name, @house_id, @age]
     student_data = SqlRunner.run(sql, values)
     @id = student_data.first()['id'].to_i
   end
