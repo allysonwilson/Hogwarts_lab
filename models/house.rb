@@ -1,6 +1,6 @@
 require_relative('../db/sql_runner')
 class House
-attr_accessor :id, :house
+attr_accessor :id, :name
 
 def initialize(house)
   @id = house['id'].to_i
