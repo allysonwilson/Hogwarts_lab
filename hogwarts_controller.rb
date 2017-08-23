@@ -10,7 +10,7 @@ get '/students' do
 end
 
 get '/students/new' do
-  @house = House.all( params[:id])
+  @houses = House.all( )
   erb(:new)
 end
 
